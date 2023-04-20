@@ -36,6 +36,7 @@ class Piggy(PiggyParent):
         print("\n *** MENU ***") 
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
+                "t": ("Circle turn", self.circle),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
                 "f": ("Follow", self.follow),
@@ -60,15 +61,15 @@ class Piggy(PiggyParent):
       pass 
 
     def circle(self):
-      self.deg_fwd(180)
+      self.right(180)
       self.stop()
-      self.deg_fwd(90)
+      self.right(90)
       self.stop()
-      self.deg_fwd(45)
+      self.right(45)
       self.stop()
-      self.deg_fwd(30)
+      self.right(30)
       self.stop()
-      self.deg_fwd(15)
+      self.right(15)
       self.stop()
       
     def dance(self):
