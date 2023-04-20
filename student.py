@@ -61,9 +61,13 @@ class Piggy(PiggyParent):
 
     def circle(self):
       self.deg_fwd(180)
+      self.stop()
       self.deg_fwd(90)
+      self.stop()
       self.deg_fwd(45)
+      self.stop()
       self.deg_fwd(30)
+      self.stop()
       self.deg_fwd(15)
       self.stop()
       
