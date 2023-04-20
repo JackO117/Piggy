@@ -58,6 +58,14 @@ class Piggy(PiggyParent):
 
     def throw(self):
       pass 
+
+    def circle(self):
+      self.deg_fwd(180)
+      self.deg_fwd(90)
+      self.deg_fwd(45)
+      self.deg_fwd(30)
+      self.deg_fwd(15)
+      self.stop()
       
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
