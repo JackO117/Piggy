@@ -36,13 +36,12 @@ class Piggy(PiggyParent):
         print("\n *** MENU ***") 
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
-                "t": ("Circle turn", self.circle),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
                 "f": ("Follow", self.follow),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit),
-                "z": ("Square", self.square),
+                "z": ("Square", self.square)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
