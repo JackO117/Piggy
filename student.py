@@ -42,7 +42,7 @@ class Piggy(PiggyParent):
                 "f": ("Follow", self.follow),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit),
-                "z": ("Square", self.square)
+                "z": ("Square", self.square),
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -61,31 +61,23 @@ class Piggy(PiggyParent):
     def throw(self):
       pass 
 
-    def circle(self):
-      self.right(180)
-      self.stop()
-      self.right(90)
-      self.stop()
-      self.right(45)
-      self.stop()
-      self.right(30)
-      self.stop()
-      self.right(15)
-      self.stop()
-
     def square(self):
-      self.forward(2)
+      self.fwd()
+      time.sleep(3)
       self.stop()
-      self.right(90)
-      self.forward(2)
+      self.turn_by_deg(90)
+      self.fwd()
+      time.sleep(3)
       self.stop()
-      self.right(90)
-      self.forward(2)
+      self.turn_by_deg(90) 
+      self.fwd()
+      time.sleep(3)
       self.stop()
-      self.right(90)
-      self.forward(2)
+      self.turn_by_deg(90) 
+      self.fwd()
+      time.sleep(3)
       self.stop()
-      self.right(90)
+      self.turn_by_deg(90)
       self.stop()
       
     def dance(self):
