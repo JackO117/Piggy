@@ -71,6 +71,21 @@ class Piggy(PiggyParent):
       self.stop()
       self.right(15)
       self.stop()
+
+    def square(self):
+      self.forward(2)
+      self.stop()
+      self.right(90)
+      self.forward(2)
+      self.stop()
+      self.right(90)
+      self.forward(2)
+      self.stop()
+      self.right(90)
+      self.forward(2)
+      self.stop()
+      self.right(90)
+      self.stop()
       
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
