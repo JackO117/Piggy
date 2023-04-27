@@ -36,7 +36,7 @@ class Piggy(PiggyParent):
         print("\n *** MENU ***") 
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
-                "sd": ("Safe to Dnace", self.safe_to_dance),
+                "sd": ("Safe to Dance", self.safe_to_dance),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
                 "f": ("Follow", self.follow),
@@ -112,7 +112,7 @@ class Piggy(PiggyParent):
 
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe """
-        self.turn_by_deg(360)
+        self.turn_by_deg(350)
         self.read_distance()
         if self.read_distance() >= 30:
           return False 
