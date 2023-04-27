@@ -36,6 +36,7 @@ class Piggy(PiggyParent):
         print("\n *** MENU ***") 
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
+                "sd": ("Safe to Dnace", self.safe_to_dance),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
                 "f": ("Follow", self.follow),
@@ -56,9 +57,6 @@ class Piggy(PiggyParent):
     STUDENT PROJECTS
     ****************
     '''
-
-    def throw(self):
-      pass 
 
     def square(self):
       self.fwd()
@@ -81,6 +79,30 @@ class Piggy(PiggyParent):
       
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
+        self.fwd()
+        time.sleep(1)
+        self.turn_by_deg(90)
+        self.turn_by_deg(-90)
+        self.back()
+        time.sleep(2)
+        self.fwd()
+        time.sleep(1)
+        self.turn_by_deg(90)
+        self.turn_by_deg(-90)
+        self.back()
+        time.sleep(2) 
+        self.fwd()
+        time.sleep(1)
+        self.turn_by_deg(90)
+        self.turn_by_deg(-90)
+        self.back()
+        time.sleep(2) 
+        self.fwd()
+        time.sleep(1)
+        self.turn_by_deg(90)
+        self.turn_by_deg(-90)
+        self.back()
+        time.sleep(2)
         # TODO: check to see if it's safe before dancing
         
         # lower-ordered example...
@@ -90,7 +112,22 @@ class Piggy(PiggyParent):
 
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe """
-        pass
+        for x in range (7):
+          self.turn_by_deg(45)
+          self.read_distance()
+          if self.read_distnace() >= 30:
+            return False 
+          else:
+            pass
+        self.turn_by_deg(45)
+        self.read_distance()
+        if self.read_distnace() >= 30:
+          return False 
+        else:
+          return True
+          
+          
+        
 
     def shake(self):
         """ Another example move """
