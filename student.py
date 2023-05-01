@@ -2,6 +2,7 @@
 from teacher import PiggyParent
 import sys
 import time
+from turtle import ontimer
 
 class Piggy(PiggyParent):
 
@@ -37,6 +38,9 @@ class Piggy(PiggyParent):
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
                 "sd": ("Safe to Dance", self.safe_to_dance),
+                "ws": ("Move with Stops", self.wall_stop),
+                "wt": ("Move with Turns", self.wall_turn),
+                "ms": ("Move + Scan", self.move_scan),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
                 "f": ("Follow", self.follow),
@@ -112,16 +116,36 @@ class Piggy(PiggyParent):
 
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe """
-        self.turn_by_deg(350)
-        self.read_distance()
-        if self.read_distance() >= 30:
+        for x in range(7):
+          self.turn_by_deg(45)
+          if self.read_distance() < 700:
+            return False 
+          else:
+            pass
+        self.turn_by_deg(45)
+        if self.read_distance() < 700:
           return False 
         else:
           return True
-          
-          
-        
 
+    def wall_stop(self):
+      self.fwd()
+      time.sleep(1)
+      if self.read_distance() < 700:
+        self.stop()
+      else:
+        ontimer(self.wall_stop, 1)
+
+    def wall_turn(self):
+      if self.read_distance() < 700:
+        self.turn_by_deg(180)
+        ontimer(self.wall_turn, 1)
+      else:
+        ontimer(self.wall_turn, 1)
+
+    def move_scan(self):
+      pass
+          
     def shake(self):
         """ Another example move """
         self.deg_fwd(720)
