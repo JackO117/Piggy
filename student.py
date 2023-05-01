@@ -41,6 +41,7 @@ class Piggy(PiggyParent):
                 "ws": ("Move with Stops", self.wall_stop),
                 "wt": ("Move with Turns", self.wall_turn),
                 "ms": ("Move + Scan", self.move_scan),
+                "b": ("Navigate Box", self.box_navigate),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
                 "f": ("Follow", self.follow),
@@ -127,6 +128,7 @@ class Piggy(PiggyParent):
           return False 
         else:
           return True
+          self.dance()
 
     def wall_stop(self):
       self.fwd()
@@ -137,13 +139,36 @@ class Piggy(PiggyParent):
         ontimer(self.wall_stop, 1)
 
     def wall_turn(self):
+      self.fwd()
+      time.sleep(1)
       if self.read_distance() < 700:
         self.turn_by_deg(180)
         ontimer(self.wall_turn, 1)
       else:
         ontimer(self.wall_turn, 1)
 
+    def box_navigate(self):
+      # Move to box and go around it. Before moving around box, figure out which side of closer. If you are closer to the left end of the box, go around left. If you are closer to the right end of the box, go around to the right.
+      self.fwd()
+      time.sleep(1)
+      if self.read_distance() < 700:
+        self.manage_box
+      else:
+        ontimer(self.box_navigate, 1)
+
+    def manage_box(self):
+      pass
+
     def move_scan(self):
+      # Write a move method which scans slightly to the left and right of the robot as it moves forward
+      pass
+
+    def wall_avoid(self):
+      # If it senses a wall straight ahead, it goes around to the closest side as above
+      pass
+
+    def wall_swerve(self):
+      # If it senses a wall at the edges of the robot, swerve slightly to miss the wall
       pass
           
     def shake(self):
