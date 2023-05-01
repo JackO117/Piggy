@@ -132,7 +132,7 @@ class Piggy(PiggyParent):
     def wall_stop(self):
       self.fwd()
       time.sleep(1)
-      if self.read_distance() < 700:
+      if self.read_distance() < 200:
         self.stop()
       else:
         ontimer(self.wall_stop, 1)
@@ -140,7 +140,7 @@ class Piggy(PiggyParent):
     def wall_turn(self):
       self.fwd()
       time.sleep(1)
-      if self.read_distance() < 700:
+      if self.read_distance() < 200:
         self.turn_by_deg(180)
         ontimer(self.wall_turn, 1)
       else:
@@ -150,7 +150,7 @@ class Piggy(PiggyParent):
       # Move to box and go around it. Before moving around box, figure out which side of closer. If you are closer to the left end of the box, go around left. If you are closer to the right end of the box, go around to the right.
       self.fwd()
       time.sleep(1)
-      if self.read_distance() < 700:
+      if self.read_distance() < 200:
         self.manage_box
       else:
         ontimer(self.box_navigate, 1)
