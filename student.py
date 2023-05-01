@@ -2,7 +2,7 @@
 from teacher import PiggyParent
 import sys
 import time
-from turtle import ontimer
+
 
 class Piggy(PiggyParent):
 
@@ -136,7 +136,7 @@ class Piggy(PiggyParent):
       if self.read_distance() < 200:
         self.stop()
       else:
-        ontimer(self.wall_stop, 1)
+        self.wall_stop()
 
     def wall_turn(self):
       self.servo(1500)
@@ -144,9 +144,9 @@ class Piggy(PiggyParent):
       time.sleep(1)
       if self.read_distance() < 200:
         self.turn_by_deg(180)
-        ontimer(self.wall_turn, 1)
+        self.wall_turn()
       else:
-        ontimer(self.wall_turn, 1)
+        self.wall_turn()
 
     def box_navigate(self):
       # Move to box and go around it. Before moving around box, figure out which side of closer. If you are closer to the left end of the box, go around left. If you are closer to the right end of the box, go around to the right.
@@ -155,7 +155,7 @@ class Piggy(PiggyParent):
       if self.read_distance() < 200:
         self.manage_box
       else:
-        ontimer(self.box_navigate, 1)
+        self.box_navigate()
 
     def manage_box(self):
       pass
