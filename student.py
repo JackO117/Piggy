@@ -125,9 +125,8 @@ class Piggy(PiggyParent):
             pass
         self.turn_by_deg(45)
         if self.read_distance() < 700:
-          return False 
+          self.stop() 
         else:
-          return True
           self.dance()
 
     def wall_stop(self):
