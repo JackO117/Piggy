@@ -158,18 +158,40 @@ class Piggy(PiggyParent):
         self.box_navigate()
 
     def manage_box(self):
+      #Look for which side is closer
+      #If left is closer:
+        #Turn -90 degrees and travel on loop until the end is passed, then turn 90 degrees
+      #If right is closer:
+        #Turn 90 degrees and travel on loop until the end is passed, then turn -90 degrees
       pass
 
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
+      self.fwd()
+      time.sleep(1)
+      #if self.read_distance() < 200:
+        #Decide to swerve or go around
+        #Do self.wall_avoid or self.wall_swerve accordingly
       pass
 
     def wall_avoid(self):
-      # If it senses a wall straight ahead, it goes around to the closest side as above
+      #If it senses a wall straight ahead, it goes around to the closest side as above
+      #If edge is on left: 
+        #Turn -90 degrees and travel on loop until the end is passed, then turn 90 degrees
+      #If wall is on right:
+        #Turn 90 degrees and travel on loop until the end is passed, then turn -90 degrees
       pass
 
     def wall_swerve(self):
       # If it senses a wall at the edges of the robot, swerve slightly to miss the wall
+      # If wall is on left:
+      self.turn_by_deg(45)
+      self.fwd
+      time.sleep(1)
+      # If wall is on right:
+      self.turn_by_deg(45)
+      self.fwd
+      time.sleep(1)
       pass
           
     def shake(self):
