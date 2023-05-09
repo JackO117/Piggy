@@ -20,7 +20,7 @@ class Piggy(PiggyParent):
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
+        self.MIDPOINT = 1325  # what servo command (1000-2000) is straight forward for your bot?
         self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
         self.load_defaults()
         
@@ -156,49 +156,86 @@ class Piggy(PiggyParent):
         self.manage_box
       else:
         self.box_navigate()
-
+        
+    #Needs work
     def manage_box(self):
       self.turn_by_deg(-90)
-      #Read distance and save as variable
+      variable1 = self.read_distance()
       self.turn_by_deg(90)
       self.turn_by_deg(90)
-      #Read distance and save as different variable
-      #Find out which variabble is greater
-      #Look for which side is closer
-      #If left is closer:
-        #Turn -90 degrees and travel on loop until the end is passed, then turn 90 degrees
-      #If right is closer:
-        #Turn 90 degrees and travel on loop until the end is passed, then turn -90 degrees
-      pass
-
+      variable2 = self.read_distance
+      if int(variable1) < int(variable2):
+        self.turn_by_deg(-180)
+        distance1 = int(variable1)/250 
+        self.fwd()
+        time.sleep(int(distance1))
+        self.fwd()
+        time.sleep(1)
+        self.turn_by_deg(90)
+      else:
+        distance2 = int(variable2)/250 
+        self.fwd()
+        time.sleep(int(distance2))
+        self.fwd()
+        time.sleep(1)
+        self.turn_by_deg(-90)
+        
+    #Needs work
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
       self.fwd()
       time.sleep(1)
-      #if self.read_distance() < 200:
-        #Decide to swerve or go around
-        #Do self.wall_avoid or self.wall_swerve accordingly
-      pass
+      if self.read_distance() < 200:
+        self.decision()
+      else:
+        self.move_scan()
 
-    def wall_avoid(self):
-      #If it senses a wall straight ahead, it goes around to the closest side as above
-      #If edge is on left: 
-        #Turn -90 degrees and travel on loop until the end is passed, then turn 90 degrees
-      #If wall is on right:
-        #Turn 90 degrees and travel on loop until the end is passed, then turn -90 degrees
-      pass
+    def decision(self):
+      variableb1 = self.read_distance()
+      self.turn_by_deg(-90)
+      variableb2 = self.read_distance()
+      self.turn_by_deg(90)
+      self.turn_by_deg(90)
+      variableb3 = self.read_distance
+      if variableb1 < variableb2 and variableb3:
+        if variableb2 < variableb3:
+          self.wall_avoid_L
+        else:
+          self.wall_avoid_R
+      else:
+        if variableb2 < variableb3:
+          self.wall_swerve_L
+        else:
+          self.wall_serve_R
 
-    def wall_swerve(self):
-      # If it senses a wall at the edges of the robot, swerve slightly to miss the wall
-      # If wall is on left:
+    def wall_avoid_L(self):
+      self.turn_by_deg(-180)
+      distanceb1 = int(variableb1)/250 
+      self.fwd()
+      time.sleep(int(distanceb1))
+      self.fwd()
+      time.sleep(1)
+      self.turn_by_deg(90)
+
+    def wall_avoid_R(self):
+      distanceb2 = int(variableb2)/250 
+      self.fwd()
+      time.sleep(int(distanceb2))
+      self.fwd()
+      time.sleep(1)
+      self.turn_by_deg(-90)
+
+    def wall_swerve_L(self):
       self.turn_by_deg(45)
       self.fwd
-      time.sleep(1)
-      # If wall is on right:
-      self.turn_by_deg(45)
+      time.sleep(1.5)
+      self.turn_by_deg(-45)
+
+    def wall_swerve_R(self):
+      self.turn_by_deg(-45)
       self.fwd
-      time.sleep(1)
-      pass
+      time.sleep(1.5)
+      self.turn_by_deg(45)
           
     def shake(self):
         """ Another example move """
