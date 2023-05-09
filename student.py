@@ -158,6 +158,12 @@ class Piggy(PiggyParent):
         self.box_navigate()
 
     def manage_box(self):
+      self.turn_by_deg(-90)
+      #Read distance and save as variable
+      self.turn_by_deg(90)
+      self.turn_by_deg(90)
+      #Read distance and save as different variable
+      #Find out which variabble is greater
       #Look for which side is closer
       #If left is closer:
         #Turn -90 degrees and travel on loop until the end is passed, then turn 90 degrees
