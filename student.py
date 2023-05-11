@@ -163,19 +163,19 @@ class Piggy(PiggyParent):
       variable1 = self.read_distance()
       self.turn_by_deg(90)
       self.turn_by_deg(90)
-      variable2 = self.read_distance
-      if int(variable1) < int(variable2):
+      variable2 = self.read_distance()
+      if variable1 < variable2:
         self.turn_by_deg(-180)
-        distance1 = int(variable1)/250 
+        distance1 = variable1/250 
         self.fwd()
-        time.sleep(int(distance1))
+        time.sleep(distance1)
         self.fwd()
         time.sleep(1)
         self.turn_by_deg(90)
       else:
-        distance2 = int(variable2)/250 
+        distance2 = variable2/250 
         self.fwd()
-        time.sleep(int(distance2))
+        time.sleep(distance2)
         self.fwd()
         time.sleep(1)
         self.turn_by_deg(-90)
@@ -184,43 +184,43 @@ class Piggy(PiggyParent):
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
       self.fwd()
-      time.sleep(1)
+      time.sleep(3)
       if self.read_distance() < 200:
         self.decision()
       else:
         self.move_scan()
 
     def decision(self):
+      self.stop()
       variableb1 = self.read_distance()
-      self.turn_by_deg(-90)
+      self.servo(1000)
       variableb2 = self.read_distance()
-      self.turn_by_deg(90)
-      self.turn_by_deg(90)
-      variableb3 = self.read_distance
+      self.servo(1650)
+      variableb3 = self.read_distance()
       if variableb1 < variableb2 and variableb3:
         if variableb2 < variableb3:
-          self.wall_avoid_L
+          self.wall_avoid_L(variableb2)
         else:
-          self.wall_avoid_R
+          self.wall_avoid_R(variableb3)
       else:
         if variableb2 < variableb3:
           self.wall_swerve_L
         else:
           self.wall_serve_R
 
-    def wall_avoid_L(self):
+    def wall_avoid_L(self, variableb2):
       self.turn_by_deg(-180)
-      distanceb1 = int(variableb1)/250 
+      distanceb1 = variableb2/250 
       self.fwd()
-      time.sleep(int(distanceb1))
+      time.sleep(distanceb1)
       self.fwd()
       time.sleep(1)
       self.turn_by_deg(90)
 
-    def wall_avoid_R(self):
-      distanceb2 = int(variableb2)/250 
+    def wall_avoid_R(self, variableb3):
+      distanceb2 = variableb3/250 
       self.fwd()
-      time.sleep(int(distanceb2))
+      time.sleep(distanceb2)
       self.fwd()
       time.sleep(1)
       self.turn_by_deg(-90)
