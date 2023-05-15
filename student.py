@@ -183,11 +183,11 @@ class Piggy(PiggyParent):
     #Needs work
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
-      self.fwd()
-      time.sleep(3)
-      if self.read_distance() < 200:
-        self.decision()
+      while self.read_distance() > 200: 
+            self.fwd()
+            time.sleep(.01)
       else:
+        self.decision()
         self.move_scan()
 
     def decision(self):
@@ -195,6 +195,7 @@ class Piggy(PiggyParent):
       variableb1 = self.read_distance()
       self.servo(1000)
       variableb2 = self.read_distance()
+      self.servo(1325)
       self.servo(1650)
       variableb3 = self.read_distance()
       if variableb1 < variableb2 and variableb3:
