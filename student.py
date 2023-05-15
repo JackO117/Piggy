@@ -162,13 +162,14 @@ class Piggy(PiggyParent):
     def manage_box(self):
       self.servo(self.MIDPOINT-350)
       time.sleep(0.5)
-      variable1 = self.read_distance()
+      variable1 = self.read_distance() #right
       self.servo(self.MIDPOINT)
       self.servo(self.MIDPOINT+350)
       time.sleep(0.5)
-      variable2 = self.read_distance()
+      variable2 = self.read_distance() #left
+      self.servo(self.MIDPOINT)
       if variable1 < variable2:
-        self.turn_by_deg(-180)
+        self.turn_by_deg(-90)
         distance1 = variable1/200 
         self.fwd()
         time.sleep(distance1)
@@ -176,6 +177,7 @@ class Piggy(PiggyParent):
         time.sleep(1)
         self.turn_by_deg(90)
       else:
+        self.turn_by_deg(90)
         distance2 = variable2/200 
         self.fwd()
         time.sleep(distance2)
