@@ -150,31 +150,32 @@ class Piggy(PiggyParent):
 
     def box_navigate(self):
       # Move to box and go around it. Before moving around box, figure out which side of closer. If you are closer to the left end of the box, go around left. If you are closer to the right end of the box, go around to the right.
-      self.fwd()
-      time.sleep(1)
-      if self.read_distance() < 200:
-        self.manage_box
+      while self.read_distance() > 250:  
+            self.fwd()
+            time.sleep(.01)
       else:
+        self.stop()
+        self.manage_box()
         self.box_navigate()
         
     #Needs work
     def manage_box(self):
-      self.stop()
-      self.turn_by_deg(-90)
-      variable1 = self.read_distance()
-      self.turn_by_deg(90)
-      self.turn_by_deg(90)
-      variable2 = self.read_distance()
+      for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 3):
+            self.servo(self.MIDPOINT-350)
+            variable1 = self.read_distance()
+            self.servo(self.MIDPOINT+350)
+            variable2 = self.read_distance()
+            self.servo(self.MIDPOINT+350)
       if variable1 < variable2:
         self.turn_by_deg(-180)
-        distance1 = variable1/250 
+        distance1 = variable1/200 
         self.fwd()
         time.sleep(distance1)
         self.fwd()
         time.sleep(1)
         self.turn_by_deg(90)
       else:
-        distance2 = variable2/250 
+        distance2 = variable2/200 
         self.fwd()
         time.sleep(distance2)
         self.fwd()
@@ -188,16 +189,16 @@ class Piggy(PiggyParent):
             self.fwd()
             time.sleep(.01)
       else:
+        self.stop()
         self.decision()
         self.move_scan()
 
     def decision(self):
-      self.stop()
       variableb1 = self.read_distance()
-      self.servo(1000)
+      self.servo(self.MIDPOINT-350)
       variableb2 = self.read_distance()
-      self.servo(1325)
-      self.servo(1650)
+      self.servo(self.MIDPOINT+350)
+      self.servo(self.MIDPOINT+350)
       variableb3 = self.read_distance()
       if variableb1 < variableb2 and variableb3:
         if variableb2 < variableb3:
@@ -239,19 +240,6 @@ class Piggy(PiggyParent):
       time.sleep(1.5)
       self.turn_by_deg(45)
           
-    def shake(self):
-        """ Another example move """
-        self.deg_fwd(720)
-        self.stop()
-
-    def example_move(self):
-        """this is an example dance move that should be replaced by student-created content"""
-        self.right() # start rotating right
-        time.sleep(1) # turn for a second
-        self.stop() # stop
-        self.servo(1000) # look right
-        time.sleep(.25) # give your head time to move
-        self.servo(2000) # look left
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
