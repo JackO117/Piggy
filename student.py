@@ -160,12 +160,13 @@ class Piggy(PiggyParent):
         
     #Needs work
     def manage_box(self):
-      for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 3):
-            self.servo(self.MIDPOINT-350)
-            variable1 = self.read_distance()
-            self.servo(self.MIDPOINT+350)
-            variable2 = self.read_distance()
-            self.servo(self.MIDPOINT+350)
+      self.servo(self.MIDPOINT-350)
+      time.sleep(0.5)
+      variable1 = self.read_distance()
+      self.servo(self.MIDPOINT)
+      self.servo(self.MIDPOINT+350)
+      time.sleep(0.5)
+      variable2 = self.read_distance()
       if variable1 < variable2:
         self.turn_by_deg(-180)
         distance1 = variable1/200 
