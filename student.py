@@ -159,6 +159,7 @@ class Piggy(PiggyParent):
         
     #Needs work
     def manage_box(self):
+      self.stop()
       self.turn_by_deg(-90)
       variable1 = self.read_distance()
       self.turn_by_deg(90)
