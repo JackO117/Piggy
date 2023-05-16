@@ -199,32 +199,33 @@ class Piggy(PiggyParent):
     def decision(self):
       variableb1 = self.read_distance()
       self.servo(self.MIDPOINT-350)
-      variableb2 = self.read_distance()
+      variableb2 = self.read_distance() #right
       self.servo(self.MIDPOINT+350)
-      self.servo(self.MIDPOINT+350)
-      variableb3 = self.read_distance()
+      variableb3 = self.read_distance() #left
+      self.servo(self.MIDPOINT)
       if variableb1 < variableb2 and variableb3:
-        if variableb2 < variableb3:
-          self.wall_avoid_L(variableb2)
+        if variableb3 < variableb2:
+          self.wall_avoid_L(variableb3)
         else:
-          self.wall_avoid_R(variableb3)
+          self.wall_avoid_R(variableb2)
       else:
         if variableb2 < variableb3:
           self.wall_swerve_L
         else:
           self.wall_serve_R
 
-    def wall_avoid_L(self, variableb2):
-      self.turn_by_deg(-180)
-      distanceb1 = variableb2/250 
+    def wall_avoid_L(self, variableb3):
+      self.turn_by_deg(-90)
+      distanceb1 = variableb3/200 
       self.fwd()
       time.sleep(distanceb1)
       self.fwd()
       time.sleep(1)
       self.turn_by_deg(90)
 
-    def wall_avoid_R(self, variableb3):
-      distanceb2 = variableb3/250 
+    def wall_avoid_R(self, variableb2):
+      self.turn_by_deg(90)
+      distanceb2 = variableb2/200 
       self.fwd()
       time.sleep(distanceb2)
       self.fwd()
@@ -232,16 +233,16 @@ class Piggy(PiggyParent):
       self.turn_by_deg(-90)
 
     def wall_swerve_L(self):
-      self.turn_by_deg(45)
+      self.turn_by_deg(-90)
       self.fwd
-      time.sleep(1.5)
-      self.turn_by_deg(-45)
+      time.sleep(0.5)
+      self.turn_by_deg(90)
 
     def wall_swerve_R(self):
-      self.turn_by_deg(-45)
+      self.turn_by_deg(90)
       self.fwd
-      time.sleep(1.5)
-      self.turn_by_deg(45)
+      time.sleep(0.5)
+      self.turn_by_deg(-90)
           
 
     def scan(self):
