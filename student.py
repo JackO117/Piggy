@@ -188,7 +188,7 @@ class Piggy(PiggyParent):
     #Needs work
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
-      while self.read_distance() > 100: 
+      while self.read_distance() > 200: 
             self.fwd()
             time.sleep(0.25)
             self.read_distance()
