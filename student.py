@@ -40,7 +40,8 @@ class Piggy(PiggyParent):
                 "sd": ("Safe to Dance", self.safe_to_dance),
                 "ws": ("Move with Stops", self.wall_stop),
                 "wt": ("Move with Turns", self.wall_turn),
-                "ms": ("Move + Scan", self.move_scan),
+                "ms": ("Move + Scan", self.move_scan), 
+                "m": ("Maze", self.maze),
                 "b": ("Navigate Box", self.box_navigate),
                 "o": ("Obstacle count", self.obstacle_count),
                 "s": ("Shy", self.shy),
@@ -255,8 +256,17 @@ class Piggy(PiggyParent):
       self.turn_by_deg(90)
       self.fwd
       time.sleep(0.5)
-          
 
+    def maze(self):
+      while self.read_distance() > 200: 
+            self.fwd(40, 40)
+            time.sleep(0.5)
+            self.read_distance()
+      else:
+        self.stop()
+        self.decision()
+        self.maze()
+        
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
         for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 3):
