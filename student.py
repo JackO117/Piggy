@@ -222,37 +222,41 @@ class Piggy(PiggyParent):
       variableb3 = self.read_distance() #left
       self.servo(self.MIDPOINT)
       if variableb1 < variableb2 and variableb1 < variableb3:
-        if variableb3 < variableb2:
+        if variableb2 < variableb3:
           self.wall_avoid_L(variableb3)
         else:
           self.wall_avoid_R(variableb2)
       else:
-        if variableb3 < variableb2:
+        if variableb2 < variableb3:
           self.wall_swerve_L()
         else:
           self.wall_swerve_R()
 
-    def wall_avoid_L(self, variableb3):
+    def wall_avoid_L(self, variableb2):
       self.turn_by_deg(-90)
-      distanceb1 = variableb3/250 
+      distanceb1 = variableb2/250 
       self.fwd()
       time.sleep(distanceb1)
-
-    def wall_avoid_R(self, variableb2):
       self.turn_by_deg(90)
-      distanceb2 = variableb2/250 
+
+    def wall_avoid_R(self, variableb3):
+      self.turn_by_deg(90)
+      distanceb2 = variableb3/250 
       self.fwd()
       time.sleep(distanceb2)
+      self.turn_by_deg(-90)
 
     def wall_swerve_L(self):
       self.turn_by_deg(-90)
       self.fwd
       time.sleep(0.5)
+      self.turn_by_deg(90)
 
     def wall_swerve_R(self):
       self.turn_by_deg(90)
       self.fwd
       time.sleep(0.5)
+      self.turn_by_deg(-90)
 
     def maze(self):
       while self.read_distance() > 200: 
