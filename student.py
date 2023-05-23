@@ -223,7 +223,7 @@ class Piggy(PiggyParent):
       self.servo(self.MIDPOINT+500)
       variableb3 = self.read_distance() #left
       self.servo(self.MIDPOINT)
-      if variableb1 < variableb2 and variableb3:
+      if variableb1 < variableb2 and variableb1 < variableb3:
         if variableb3 < variableb2:
           self.wall_avoid_L(variableb3)
         else:
