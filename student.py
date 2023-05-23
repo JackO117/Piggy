@@ -246,13 +246,13 @@ class Piggy(PiggyParent):
 
     def wall_swerve_L(self):
       self.turn_by_deg(-90)
-      self.fwd
+      self.fwd()
       time.sleep(0.5)
       self.turn_by_deg(90)
 
     def wall_swerve_R(self):
       self.turn_by_deg(90)
-      self.fwd
+      self.fwd()
       time.sleep(0.5)
       self.turn_by_deg(-90)
 
