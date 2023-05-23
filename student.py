@@ -192,32 +192,29 @@ class Piggy(PiggyParent):
       while True: 
             self.fwd(40, 40)
             time.sleep(0.5)
-            self.read_distance()
+            #self.read_distance()
             if self.read_distance() < 200:
               self.stop()
               self.decision()
               self.move_scan()
-            else:
-              pass
             self.servo(self.MIDPOINT-500) 
-            self.read_distance()
+            #self.read_distance()
             if self.read_distance() < 200:
               self.stop()
               self.decision()
               self.move_scan()
-            else:
-              pass
+
             self.servo(self.MIDPOINT+500)
-            self.read_distance()
-            self.servo(self.MIDPOINT)
+            #self.read_distance()
             if self.read_distance() < 200:
               self.stop()
               self.decision()
               self.move_scan()
-            else:
-              pass
+
+            self.servo(self.MIDPOINT)
 
     def decision(self):
+      self.servo(self.MIDPOINT)
       variableb1 = self.read_distance()
       self.servo(self.MIDPOINT-500)
       variableb2 = self.read_distance() #right
@@ -230,10 +227,10 @@ class Piggy(PiggyParent):
         else:
           self.wall_avoid_R(variableb2)
       else:
-        if variableb2 < variableb3:
-          self.wall_swerve_L
+        if variableb3 < variableb2:
+          self.wall_swerve_L()
         else:
-          self.wall_swerve_R
+          self.wall_swerve_R()
 
     def wall_avoid_L(self, variableb3):
       self.turn_by_deg(-90)
