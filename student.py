@@ -215,10 +215,13 @@ class Piggy(PiggyParent):
     def decision(self):
       self.servo(self.MIDPOINT)
       variableb1 = self.read_distance()
-      self.servo(self.MIDPOINT-500)
+      time.sleep(0.5)
+      self.servo(self.MIDPOINT-800)
       variableb2 = self.read_distance() #right
-      self.servo(self.MIDPOINT+500)
+      time.sleep(0.5)
+      self.servo(self.MIDPOINT+800)
       variableb3 = self.read_distance() #left
+      time.sleep(0.5)
       self.servo(self.MIDPOINT)
       if variableb1 < variableb2 and variableb1 < variableb3:
         if variableb2 < variableb3:
