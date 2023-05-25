@@ -226,7 +226,7 @@ class Piggy(PiggyParent):
         else:
           self.wall_avoid_R(variableb3)
       else:
-        if variableb2 < variableb3:
+        if variableb3 < variableb2:
           self.wall_swerve_L()
         else:
           self.wall_swerve_R()
