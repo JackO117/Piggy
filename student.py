@@ -224,7 +224,7 @@ class Piggy(PiggyParent):
       time.sleep(0.5)
       self.servo(self.MIDPOINT)
       if variableb1 < variableb2 and variableb1 < variableb3:
-        if variableb3 < variableb2:
+        if variableb2 < variableb3:
           self.wall_avoid_L(variableb3)
         else:
           self.wall_avoid_R(variableb2)
