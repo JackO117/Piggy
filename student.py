@@ -18,7 +18,7 @@ class Piggy(PiggyParent):
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
-        self.LEFT_DEFAULT = 80
+        self.LEFT_DEFAULT = 74
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1325  # what servo command (1000-2000) is straight forward for your bot?
         self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
@@ -190,7 +190,7 @@ class Piggy(PiggyParent):
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
       while True:
-            self.fwd(40, 40)
+            self.fwd(37, 40)
             #self.read_distance()
             if self.read_distance() < 200:
               self.stop()
@@ -234,31 +234,31 @@ class Piggy(PiggyParent):
     def wall_avoid_L(self, variableb2):
       self.turn_by_deg(-90)
       distanceb1 = variableb2/300
-      self.fwd()
+      self.fwd(37, 40)
       time.sleep(distanceb1)
       self.turn_by_deg(90)
 
     def wall_avoid_R(self, variableb3):
       self.turn_by_deg(90)
       distanceb2 = variableb3/300
-      self.fwd()
+      self.fwd(37, 40)
       time.sleep(distanceb2)
       self.turn_by_deg(-90)
 
     def wall_swerve_L(self):
       self.turn_by_deg(-90)
-      self.fwd()
+      self.fwd(37, 40)
       time.sleep(0.5)
       self.turn_by_deg(90)
 
     def wall_swerve_R(self):
       self.turn_by_deg(90)
-      self.fwd()
+      self.fwd(37, 40)
       time.sleep(0.5)
       self.turn_by_deg(-90)
 
     def maze(self):
-      while self.read_distance() > 200: 
+      while self.read_distance() > 90: 
             self.fwd(40, 40)
             time.sleep(0.5)
             self.read_distance()
