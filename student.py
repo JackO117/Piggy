@@ -224,26 +224,26 @@ class Piggy(PiggyParent):
       time.sleep(0.5)
       self.servo(self.MIDPOINT)
       if variableb1 < variableb2 and variableb1 < variableb3:
-        if variableb2 < variableb3:
-          self.wall_avoid_L(variableb2)
+        if variableb3 < variableb2:
+          self.wall_avoid_L(variableb3)
         else:
-          self.wall_avoid_R(variableb3)
+          self.wall_avoid_R(variableb2)
       else:
-        if variableb2 < variableb3:
+        if variableb3 < variableb2:
           self.wall_swerve_L()
         else:
           self.wall_swerve_R()
 
-    def wall_avoid_L(self, variableb2):
+    def wall_avoid_L(self, variableb3):
       self.turn_by_deg(-90)
-      distanceb1 = variableb2/300
+      distanceb1 = variableb3/300
       self.fwd(40, 37)
       time.sleep(distanceb1)
       self.turn_by_deg(90)
 
-    def wall_avoid_R(self, variableb3):
+    def wall_avoid_R(self, variableb2):
       self.turn_by_deg(90)
-      distanceb2 = variableb3/300
+      distanceb2 = variableb2/300
       self.fwd(40, 37)
       time.sleep(distanceb2)
       self.turn_by_deg(-90)
