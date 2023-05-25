@@ -226,7 +226,7 @@ class Piggy(PiggyParent):
         else:
           self.wall_avoid_R(variableb3)
       else:
-        if variableb3 < variableb2:
+        if variableb2 < variableb3:
           self.wall_swerve_L()
         else:
           self.wall_swerve_R()
@@ -259,11 +259,9 @@ class Piggy(PiggyParent):
       while self.read_distance() > 120: 
             self.fwd(40, 40)
             time.sleep(0.5)
-            self.read_distance()
-      else:
-        self.stop()
-        self.decision()
-        self.maze()
+      self.stop()
+      self.decision()
+      self.maze()
         
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
