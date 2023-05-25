@@ -237,28 +237,28 @@ class Piggy(PiggyParent):
     def wall_avoid_L(self, variableb3):
       self.turn_by_deg(-90)
       distanceb1 = variableb3/125
-      self.fwd(40, 38)
+      self.fwd(40, 35)
       time.sleep(distanceb1)
 
     def wall_avoid_R(self, variableb2):
       self.turn_by_deg(90)
       distanceb2 = variableb2/125
-      self.fwd(40, 38)
+      self.fwd(40, 35)
       time.sleep(distanceb2)
 
     def wall_swerve_L(self):
       self.turn_by_deg(-90)
-      self.fwd(40, 38)
+      self.fwd(40, 35)
       time.sleep(0.5)
 
     def wall_swerve_R(self):
       self.turn_by_deg(90)
-      self.fwd(53, 48)
+      self.fwd(40, 35)
       time.sleep(0.5)
 
     def maze(self):
       while self.read_distance() > 120: 
-            self.fwd(40, 38)
+            self.fwd(40, 35)
             time.sleep(0.5)
       self.stop()
       self.decision()
