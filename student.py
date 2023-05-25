@@ -190,7 +190,7 @@ class Piggy(PiggyParent):
     def move_scan(self):
       # Write a move method which scans slightly to the left and right of the robot as it moves forward
       while True:
-            self.fwd(40, 36)
+            self.fwd(50, 43)
             #self.read_distance()
             if self.read_distance() < 200:
               self.stop()
@@ -229,7 +229,7 @@ class Piggy(PiggyParent):
         else:
           self.wall_avoid_R(variableb2)
       else:
-        if variableb2 < variableb3:
+        if variableb3 < variableb2:
           self.wall_swerve_L()
         else:
           self.wall_swerve_R()
@@ -237,28 +237,28 @@ class Piggy(PiggyParent):
     def wall_avoid_L(self, variableb3):
       self.turn_by_deg(-90)
       distanceb1 = variableb3/125
-      self.fwd(40, 36)
+      self.fwd(47, 50)
       time.sleep(distanceb1)
 
     def wall_avoid_R(self, variableb2):
       self.turn_by_deg(90)
       distanceb2 = variableb2/125
-      self.fwd(40, 36)
+      self.fwd(47, 50)
       time.sleep(distanceb2)
 
     def wall_swerve_L(self):
       self.turn_by_deg(-90)
-      self.fwd(40, 36)
+      self.fwd(47, 50)
       time.sleep(0.5)
 
     def wall_swerve_R(self):
       self.turn_by_deg(90)
-      self.fwd(40, 36)
+      self.fwd(47, 50)
       time.sleep(0.5)
 
     def maze(self):
       while self.read_distance() > 120: 
-            self.fwd(40, 40)
+            self.fwd(47, 50)
             time.sleep(0.5)
       self.stop()
       self.decision()
